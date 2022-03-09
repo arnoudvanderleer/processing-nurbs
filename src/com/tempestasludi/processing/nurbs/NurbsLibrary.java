@@ -1,5 +1,4 @@
-package template.library;
-
+package com.tempestasludi.processing.nurbs;
 
 import processing.core.*;
 
@@ -13,8 +12,7 @@ import processing.core.*;
  *
  * @example Hello 
  */
-
-public class HelloLibrary {
+public class NurbsLibrary {
 	
 	// myParent is a reference to the parent sketch
 	PApplet myParent;
@@ -31,7 +29,7 @@ public class HelloLibrary {
 	 * @example Hello
 	 * @param theParent the parent PApplet
 	 */
-	public HelloLibrary(PApplet theParent) {
+	public NurbsLibrary(PApplet theParent) {
 		myParent = theParent;
 		welcome();
 	}
