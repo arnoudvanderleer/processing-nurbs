@@ -4,7 +4,6 @@ import processing.core.PGraphics;
 import processing.core.PVector;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 public class NurbsCurve extends Nurbs {
     private PVector[] points;
