@@ -3,8 +3,6 @@ package com.tempestasludi.processing.nurbs;
 import processing.core.PGraphics;
 import processing.core.PVector;
 
-import java.util.Arrays;
-
 public class NurbsCurve extends Nurbs {
     private PVector[] points;
     private float[] weights;
@@ -12,28 +10,54 @@ public class NurbsCurve extends Nurbs {
     private final float[] knotVector;
     private final int degree;
 
+    /**
+     * Creates a new nurbs of degree {@code points.length - 1} in which every point has the same weight.
+     *
+     * @param points The base points
+     */
     public NurbsCurve(PVector[] points) {
         this(points, points.length - 1);
     }
 
+    /**
+     * Creates a new nurbs of the given degree in which every point has the same weight.
+     *
+     * @param points The base points
+     * @param degree The degree of the curve
+     */
     public NurbsCurve(PVector[] points, int degree) {
         this(points, getWeights(points.length), degree);
     }
 
+    /**
+     * Creates a new nurbs of degree {@code points.length - 1} with the given base points and weights.
+     *
+     * @param points The base points
+     * @param weights The point weights
+     */
     public NurbsCurve(PVector[] points, float[] weights) {
         this(points, weights, points.length - 1);
     }
 
+    /**
+     * Creates a new nurbs of the given degree with the given base points and weights.
+     *
+     * @param points The base points
+     * @param weights The point weights
+     * @param degree The degree of the curve
+     */
     public NurbsCurve(PVector[] points, float[] weights, int degree) {
         this(points, weights, getKnots(points.length, degree));
     }
 
+    /**
+     * Creates a new nurbs with the given points, weights and knot vector.
+     *
+     * @param points The base points
+     * @param weights The point weights
+     * @param knotVector The knot vector
+     */
     public NurbsCurve(PVector[] points, float[] weights, float[] knotVector) {
-        System.out.println("Start");
-        System.out.println(Arrays.toString(points));
-        System.out.println(Arrays.toString(weights));
-        System.out.println(Arrays.toString(knotVector));
-
         if (points.length != weights.length) {
             throw new IllegalArgumentException("The points and weights vectors must be of equal length");
         }
@@ -47,6 +71,12 @@ public class NurbsCurve extends Nurbs {
         }
     }
 
+    /**
+     * Draws the curve with approximately the given number of steps.
+     *
+     * @param g The graphics context to draw with
+     * @param steps The number of steps to subdivide the curve into
+     */
     public void draw(PGraphics g, int steps) {
         g.beginShape();
         float stepSize = (knotVector[knotVector.length - 1] - knotVector[0]) / steps;
@@ -64,6 +94,9 @@ public class NurbsCurve extends Nurbs {
         g.endShape();
     }
 
+    /**
+     * Gives the value of the nurbs at t={@code t}.
+     */
     public PVector evaluate(float t) {
         if (t < knotVector[0]) {
             return points[0];
@@ -80,6 +113,9 @@ public class NurbsCurve extends Nurbs {
         throw new RuntimeException("This code should never execute.");
     }
 
+    /**
+     * Gives the value of the nurbs at t={@code t} with {@code t} in knot span {@code knot}.
+     */
     public PVector evaluate(float t, int knot) {
         if (knot < 0 || knotVector.length <= knot + 1) {
             throw new IllegalArgumentException("Knot out of bounds.");
@@ -100,13 +136,6 @@ public class NurbsCurve extends Nurbs {
             result = PVector.add(result, PVector.mult(points[i + knot - degree], basisWeights[i] / basisWeightsSum));
         }
         return result;
-    }
-
-    public PVector getPoint(int index) {
-        if (index < 0 || points.length <= index) {
-            throw new IllegalArgumentException("Index out of bounds");
-        }
-        return points[index];
     }
 
     public void setPoint(int index, PVector point) {
