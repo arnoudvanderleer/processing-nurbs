@@ -9,8 +9,6 @@ import processing.core.*;
  * 
  * (the tag example followed by the name of an example included in folder 'examples' will
  * automatically include the example in the javadoc.)
- *
- * @example Hello 
  */
 public class NurbsLibrary {
 	
@@ -26,7 +24,6 @@ public class NurbsLibrary {
 	 * a Constructor, usually called in the setup() method in your sketch to
 	 * initialize and start the Library.
 	 * 
-	 * @example Hello
 	 * @param theParent the parent PApplet
 	 */
 	public NurbsLibrary(PApplet theParent) {
