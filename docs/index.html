@@ -1,26 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<title>The Nurbs library</title>
-<meta name="description" content="An implementation of Non-uniform Rational B-Splines for Processing" />
-<meta name="keywords" content="processing.org, library, nurbs" />
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Language" content="en-us" />
-<meta name="ROBOTS" content="index,follow,archive" />
-<meta http-equiv="imagetoolbar" content="false" />
-<meta name="MSSmartTagsPreventParsing" content="true" />
-<meta name="author" content="Arnoud van der Leer" />
-<meta name="Rating" content="General" />
-<meta name="revisit-after" content="7 Days" />
-<meta name="doc-class" content="Living Document" />
-<link rel="stylesheet" type="text/css" href="./stylesheet.css">
+    <title>Nurbs</title>
+    <meta name="description" content="An implementation of Non-uniform Rational B-Splines for Processing"/>
+    <meta name="keywords" content="processing.org, library, nurbs, curve, surface"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Language" content="en-us"/>
+    <meta name="ROBOTS" content="index,follow,archive"/>
+    <meta http-equiv="imagetoolbar" content="false"/>
+    <meta name="MSSmartTagsPreventParsing" content="true"/>
+    <meta name="author" content="Arnoud van der Leer"/>
+    <meta name="Rating" content="General"/>
+    <meta name="revisit-after" content="7 Days"/>
+    <meta name="doc-class" content="Living Document"/>
+    <link rel="stylesheet" type="text/css" href="./stylesheet.css">
 </head>
 <body>
 	<div id="container">
 
 		<div id="header">
-			<h1>The Nurbs library</h1>
+			<h1>Nurbs</h1>
 		</div>
 
 		<div id="menu" class="clear">
@@ -39,45 +39,40 @@
 				<h2>Nurbs</h2>
 				<p>
 					A Library by <a href="https://github.com/arnoudvanderleer">Arnoud van der Leer</a> for the <a href="http://www.processing.org" target="_blank">Processing</a> programming environment.<br>
-					Last update, March 10th, 2022.
+					Last update, 03/16/2022.
 				</p>
 				<p>
-					The nurbs library is an implementation for Processing of Non-uniform Rational B-Splines. It implements regular nurbs curves, and nurbs surfaces.
-					It allows evaluating these curves and surfaces in a point and drawing them.
-					In the future, it will have support for obtaining the direction of a curve in a point, the normal vector of a surface in a point and the curvature of a curve or surface in a point.
+					The nurbs library is an implementation for Processing of Non-uniform Rational B-Splines. It implements regular nurbs curves, and nurbs surfaces.<br>
+					It allows evaluating these curves and surfaces in a point and drawing them. In the future, it will have support for obtaining the direction of a curve in a point, the normal vector of a surface in a point and the curvature of a curve or surface in a point.<br>
 				</p>
 			</div>
 
 			<div id="download" class="clear">
-				<h2 id="how-to-install-nurbs">How to install Nurbs</h2>
+				<h2>How to install Nurbs</h2>
 				<h3 id="install-with-the-contribution-manager">Install with the Contribution Manager</h3>
 				<p>Add contributed libraries by selecting the menu item <code>Sketch</code> → <code>Import Library...</code> → <code>Add Library...</code> This will open the Contribution Manager, where you can browse for Nurbs, or any other library you want to install.</p>
 				<p>After the library has been successfully installed, restart the Processing application.</p>
 				<h3 id="troubleshooting">Troubleshooting</h3>
-				<p>If you&#39;re having trouble, have a look at the <a href="https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library">Processing Wiki</a> for more information, or open an issue in the <a href="https://github.com/arnoudvanderleer/processing-nurbs/issues">GitHub repository</a>.</p>
+				<p>If you are having trouble, have a look at the <a href="https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library">Processing Wiki</a> for more information, or open an issue in the <a href="https://github.com/arnoudvanderleer/processing-nurbs/issues">Nurbs GitHub repository</a>.</p>
 			</div>
 
 			<div id="resources">
-				<p><strong>Keywords</strong>. Nurbs, curve, surface</p>
-				<p><strong>Reference</strong>. Have a look at the Javadoc reference <a href="./reference/index.html" target="_blank">here</a>. A copy of the reference is included in the .zip as well.</p>
+				<p><strong>Keywords</strong>. nurbs, curve, surface</p>
+				<p><strong>Reference</strong>. Have a look at the javadoc reference <a href="./reference/index.html" target="_blank">here</a>. A copy of the reference is included in the .zip as well.</p>
 				<p><strong>Source</strong>. The source code of the library is available on <a href="https://github.com/arnoudvanderleer/processing-nurbs">GitHub</a>.</p>
 			</div>
 
 			<div id="examples" class="clear">
 				<h2>Examples</h2>
-				<p>Find a list of examples in the current distribution of the nurbs library, or have a look at them <a href="https://github.com/arnoudvanderleer/processing-nurbs/tree/master/examples">here</a>.</p>
+				<p>Find a list of examples in the current distribution of the Nurbs library, or have a look at them <a href="https://github.com/arnoudvanderleer/processing-nurbs/tree/master/examples">here</a>.</p>
 			</div>
 
 			<div id="info">
 				<h2>Tested</h2>
 				<p>
-					<strong>Platform</strong> Tested on Ubuntu 20.04 LTS, but should work on all platforms
-					<br />
-
-					<strong>Processing</strong> 4.0 beta 7
-					<br />
-
-					<strong>Dependencies</strong> None
+					<strong>Platform</strong> Ubuntu 20.04 LTS, but should work on all platforms
+					<br/><strong>Processing</strong> 4.0 beta 7
+					<br/><strong>Dependencies</strong> None
 				</p>
 			</div>
 
@@ -85,7 +80,7 @@
 		</div>
 
 		<div id="footer">
-			<p>by Arnoud van der Leer, copyright 2022.</p>
+			<p>by Arnoud van der Leer, (c) 2022.</p>
 		</div>
 	</div>
 </body>
