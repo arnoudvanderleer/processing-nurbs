@@ -1,3 +1,6 @@
-## How to install Nurbs
+# Building the distribution
 
-[See the download and install section on the site](https://arnoudvanderleer.github.io/processing-nurbs/#download)
+To build a distribution, go into the `/build` folder and run `ant` (which will run as `ant clean` by default). This will
+- Compile the library to the `/docs/download` folder;
+- Compile the webpage from the `/web` folder to the `/docs` folder;
+- Generate documentation using `javadoc` to `/docs/reference`;

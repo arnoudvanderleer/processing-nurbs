@@ -44,16 +44,13 @@
 	<property name="project.src" location="src"/>
 	<property name="project.tmp" location="tmp"/>
 	<property name="project.web" location="web"/>
-	<property name="project.data" location="data"/>
-	<property name="project.lib" location="lib"/>
+	<property name="project.publish" location="docs"/>
 	<property name="project.bin" location="bin"/>
-	<property name="project.bin.data" location="${project.bin}/data"/>
 	<property name="project.examples" location="examples"/>
 	<property name="project.reference" location="reference"/>
 	<property name="project.dist" location="distribution"/>
 	<property name="project.dist.version" location="distribution/${project.name}-${library.version}"/>
-	<property name="install.source" location="resources/README.md"/>
-	<property name="install.destination" location="${project.dist.version}/README.md"/>
+	<property name="project.web.readme" location="resources/README.md"/>
 	<property name="libprops.source" location="resources/library.properties"/>
 	
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
@@ -65,9 +62,7 @@
 
 	<path id="classpath">
 		<fileset dir="${classpath.local.location}" includes="${classpath.local.include}" />
-		<fileset dir="${classpath.libraries.location}" includes="**/*.jar" />
-		<fileset dir="${project.lib}" includes="**/*.jar" />
-	</path>		
+	</path>
 
 	
 
@@ -110,10 +105,10 @@ ${line}
 		<antcall target="generate.libprops" />
 		<antcall target="copyToSketchbook"><param name="folder" value="libraries"/></antcall>
 		<antcall target="generate.distribution" />
-		<antcall target="generate.install.library" />
 		<antcall target="generate.web" />
-	  	<antcall target="generate.zip" />	
+	  	<antcall target="generate.zip" />
 	  	<delete dir="${project.tmp}"/>
+		<antcall target="generate.publish" />
 	</target>
 	
 	
@@ -144,9 +139,6 @@ ${line}
 			</classpath>
 			<compilerarg value="-Xlint"/>
 		</javac>
-		<copy todir="${project.bin.data}">
-			<fileset dir="${project.data}" excludes="README" />
-		</copy>
 	</target>
 	
 	
@@ -170,9 +162,6 @@ ${line}
 	  	</copy>
   		<copy todir="${project.tmp}/${project.name}/src">
   			<fileset dir="${project.src}"/>
-	  	</copy>
-	  	<copy todir="${project.tmp}/${project.name}/${folder}">
-  			<fileset dir="${project.lib}" excludes="README" />
 	  	</copy>
 	</target>
 	
@@ -236,19 +225,17 @@ ${line}
   		<copy todir="${project.dist.version}/web/reference">
   			<fileset dir="${project.dist.version}/${project.name}/reference" />
   		</copy>
-  	
-  		<copy todir="${project.dist.version}/web/examples">
-  			<fileset dir="${project.dist.version}/${project.name}/examples" />
-	  	</copy>
-	  	
+
 	  	<copy todir="${project.dist.version}/web">
   			<fileset dir="${project.web}" />
 	  	</copy>
-	  	
-	  	<antcall target="parse.file"><param name="file" value="${project.dist.version}/web/index.html"/></antcall>
+
+		<copy file="${project.web.readme}" tofile="${project.dist.version}/web/README.md" />
+
+		<antcall target="parse.file"><param name="file" value="${project.dist.version}/web/index.html"/></antcall>
 		
 		<antcall target="processExamples" />
-		
+
 		<replaceregexp file="${project.dist.version}/web/index.html" match="##examples##" replace="" flags="g" />
 	</target>
 	
@@ -288,24 +275,16 @@ ${line}
     	<replaceregexp file="${file}" match="##tested.platform##" replace="${tested.platform}" flags="g" />
     	<replaceregexp file="${file}" match="##tested.processingVersion##" replace="${tested.processingVersion}" flags="g" />
     </target>
-	
-	
-	
-	<target name="generate.install.library" if="is.normal">	
-		<copy file="${install.source}" tofile="${install.destination}" />
-		
-		<antcall target="parse.file"><param name="file" value="${install.destination}"/></antcall>
-	</target>	
-	
+
 	
 	
 	<target name="generate.zip" if="is.normal">
 		<!-- zip the distribution of the Library -->
-		
+
 		<move todir="${project.dist.version}/tmp/${project.name}">
   			<fileset dir="${project.dist.version}/${project.name}" />
   		</move>
-  		
+
   		<copy file="${project.dist.version}/tmp/${project.name}/library.properties" tofile="${project.dist.version}/web/download/${project.name}.txt" />
 		        
 		<zip destfile="${project.dist.version}/${project.name}.zip"
@@ -367,7 +346,13 @@ ${line}
           </if>
     </target>   
     
-	
+	<target name="generate.publish">
+		<delete dir="${project.publish}"/>
+		<move todir="${project.publish}">
+			<fileset dir="${project.dist.version}" />
+		</move>
+		<delete dir="${project.dist}"/>
+	</target>
 	
 	<target name="clean" depends="library.run">
 		<delete dir="${project.bin}"/>
