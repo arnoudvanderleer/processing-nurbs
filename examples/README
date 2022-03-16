@@ -1,1 +1,6 @@
-add examples for your Library here.
+# Examples
+
+This folders contains examples for the library.
+
+## Circle
+This example displays a classic nurbs curve: a circle. The detail with which it is drawn depends on the x coordinate of the mouse.
